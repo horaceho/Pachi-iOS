@@ -37,7 +37,7 @@
 // gtp.c 
 #define NO_REPLY (-2)
 
-int debug_level = 3;
+int debug_level = 5;
 bool debug_boardprint = true;
 long verbose_logs = 0;
 
@@ -106,7 +106,7 @@ void engineInit()
 int engineCommand(const char *command)
 {
     enum parse_code code = gtp_parse(board, pachi, ti, (char *) command);
-    printf("%s: %d", command, code);
+    printf("%s: %d\n", command, code);
 
     return code;
 }

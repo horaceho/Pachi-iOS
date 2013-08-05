@@ -107,13 +107,14 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
 	[self.commandBar resignFirstResponder];
-    [self log:self.commandBar.text];
-    [self log:@"\n"];
 
     NSUInteger length = self.consoleLog.text.length;
     self.consoleLog.selectedRange = NSMakeRange(length, 0);
 
-    engineCommand([self.commandBar.text UTF8String]);
+    NSString *command = self.commandBar.text;
+    [self log:[NSString stringWithFormat:@"%@\n", command]];
+    int code = engineCommand([command UTF8String]);
+    [self log:[NSString stringWithFormat:@"%@: %d\n", command, code]];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
